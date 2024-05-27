@@ -1,17 +1,25 @@
 import React, { useRef } from "react";
 import HaveQuestion from "./HaveQuestion";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { contactUsSliceActions } from "../store/contactUsDataSlices/contactUs";
 import { Link } from "react-router-dom";
+import { v4 } from "uuid";
+import FormSubmitMsg from "./FormSubmitMsg";
+import { SuccessMsgActions } from "../store/SuccessMsg";
 
 const Contact = () => {
-    let id = Math.floor(Math.random() * 1000);
+    const success = useSelector((store) => store.success);
+    let id = v4();
     let name = useRef();
     let email = useRef();
     let description = useRef();
     let dispatch = useDispatch();
     let submitContactUsData = (e) => {
     e.preventDefault();
+    dispatch(SuccessMsgActions.successMsgShow());
+    setTimeout(()=>{
+      dispatch(SuccessMsgActions.successMsgHide());
+    },6000)
     let username = name.current.value;
     let userEmail = email.current.value;
     let userDescription = description.current.value;
@@ -23,7 +31,8 @@ const Contact = () => {
         userDescription,
       })
         
-    );
+    );  
+        id = '';
         name.current.value = '';
         email.current.value = '';
         description.current.value = '';
@@ -54,6 +63,7 @@ const Contact = () => {
                         ><Link to='/admin/contact-us-data' style={{color: 'white'}}>
                           Contact Us
                           </Link>
+                          {success == true && <FormSubmitMsg />}
                         </div>
                         <div className="card-body">
                           <form onSubmit={submitContactUsData}>

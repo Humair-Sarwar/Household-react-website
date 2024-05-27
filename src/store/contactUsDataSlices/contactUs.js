@@ -10,12 +10,18 @@ let contactUsSlice = createSlice({
     },
     formDataUpdateSingle: (state, action)=>{
       let {viewDataContact, formData} = action.payload;
-      state[viewDataContact] = formData;
-      
-      
+      return state.map((list)=>{
+        if(list.id == viewDataContact){
+          return {
+            ...list, ...formData
+          }
+        }
+        return list
+      }
+       )
     },
     formDataDeleteSingle: (state, action)=>{
-      let filterContactFormData = state.filter((data, index)=>index != action.payload);
+      let filterContactFormData = state.filter((data)=>data.id != action.payload);
       return filterContactFormData;
     },
     

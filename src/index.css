@@ -12502,12 +12502,13 @@ color: #8224e3;
 
 .charts-graphs {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   padding: 30px 30px;
 }
 
 .chart-container {
+  height: 450px;
   width: 100%;
   padding: 20px;
   border-radius: 8px;
@@ -12531,7 +12532,7 @@ canvas {
 }
 
 .visits-info {
-  text-align: center;
+  text-align: left;
 }
 @media screen and (max-width: 500px) {
   .search-add-container {
@@ -12664,4 +12665,50 @@ canvas {
   justify-content: center !important;
   align-items: center !important;
   
+}
+.job-form-page .every-text-field{
+  width: 100%;
+}
+.job-form-page h1{
+  font-size: 23px;
+  width: 100%;
+  text-align: center;
+  color: #080a3c;
+}
+
+.small-date-picker .MuiInputBase-input {
+  font-size: 0.875rem; /* Adjust the font size as needed */
+  padding: 10px 12px; /* Adjust the padding as needed */
+  
+}
+.small-date-picker{
+  width: 100%;
+}
+
+.small-date-picker .MuiInputLabel-root {
+
+  position: absolute;
+  top: -7px;
+}
+.css-1jy569b-MuiFormLabel-root-MuiInputLabel-root{
+  position: absolute;
+  top: 7px;
+}
+.view-job-form-data{
+  border: 1px solid black;
+  padding: 3px 5px !important;
+  font-size: 13px;
+}
+.border-remove-job-form{
+  border-top: none;
+}
+.view-job-form-data-cancel-btn button{
+  border: 2px solid red;
+  background-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
 }

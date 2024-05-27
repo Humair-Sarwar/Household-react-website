@@ -4,17 +4,17 @@ import Button from "@mui/material/Button";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import { useDispatch, useSelector } from "react-redux";
-import { contactUsSliceActions } from "../../../../store/contactUsDataSlices/contactUs";
-import { MdDelete } from "react-icons/md";
-import { deleteSingleContactUsSliceActions } from "../../../../store/contactUsDataSlices/deleteContactForm";
+import { MdDelete } from "react-icons/md"
+import { deleteSingleUserSliceActions } from "../../../../store/users/deleteUser";
+import { usersSliceActions } from "../../../../store/users/users";
 import { SuccessMsgActions } from "../../../../store/SuccessMsg";
+
 
 const emails = [];
 
 function SimpleDialog(props) {
   let dispatch = useDispatch();
-  let deleteDataContact = useSelector((state) => state.deleteDataContact);
-
+  let deleteUserId = useSelector((state) => state.deleteUserId);
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
@@ -22,7 +22,7 @@ function SimpleDialog(props) {
   };
   
   let deleteRecordContactForm = () => {
-    dispatch(contactUsSliceActions.formDataDeleteSingle(deleteDataContact));
+    dispatch(usersSliceActions.deleteUser(deleteUserId));
     handleClose();
     dispatch(SuccessMsgActions.successMsgShow());
     setTimeout(()=>{
@@ -40,7 +40,7 @@ function SimpleDialog(props) {
             fontSize: "17px",
           }}
         >
-          Are you sure do you want to delete this record?
+          Are you sure do you want to delete this user?
           
         </DialogTitle>
 
@@ -75,14 +75,15 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-export default function SimpleDialogDemoDelete({ id }) {
+export default function DeleteUser({ id }) {
+  console.log('idddddddddd', id);
   let dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = (id) => {
     setOpen(true);
-    dispatch(deleteSingleContactUsSliceActions.formDataDeleteSingle(id));
+    dispatch(deleteSingleUserSliceActions.deleteSingleUser(id));
   };
 
   const handleClose = (value) => {
@@ -92,7 +93,7 @@ export default function SimpleDialogDemoDelete({ id }) {
 
   return (
     <>
-      <MdDelete variant="outlined" onClick={() => handleClickOpen(id)}>
+      <MdDelete variant="outlined" style={{color: '#e94560'}} onClick={() => handleClickOpen(id)}>
         Open simple dialog
       </MdDelete>
 

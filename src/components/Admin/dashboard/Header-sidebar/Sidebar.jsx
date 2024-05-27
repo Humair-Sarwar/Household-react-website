@@ -5,15 +5,17 @@ import { GoDatabase } from "react-icons/go";
 import { IoLogOutOutline } from "react-icons/io5";
 import { IoMdContacts } from "react-icons/io";
 import { FaUsers } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  let showUsername = useSelector(state=>state.showUsername);
   let location = useLocation();
   return (
     <>
       <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{width: "20%", height: "100vh", position:'fixed', top:'0'}}>
     <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
       <svg className="bi pe-none me-2" width="40" height="32"><use xlinkHref="#bootstrap"></use></svg>
-      <span className="fs-4">Sidebar</span>
+      <span className="fs-4">Household</span>
     </a>
     <hr/>
     <ul className="nav nav-pills flex-column mb-auto">
@@ -49,8 +51,9 @@ const Sidebar = () => {
     <hr/>
     <div className="dropdown">
       <a href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2"/>
-        <strong>mdo</strong>
+        
+        <div style={{backgroundColor: 'green', width: '33px', height: '33px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', fontWeight: '500', fontSize: '18px'}} className="design-sidebar-circle"> {showUsername.charAt(0).toUpperCase()}</div>&nbsp;
+        <strong>{showUsername}</strong>
       </a>
       <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
         <li><a className="dropdown-item" href="#">New project...</a></li>

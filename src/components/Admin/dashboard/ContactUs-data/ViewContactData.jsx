@@ -12,7 +12,7 @@ const emails = [];
 function SimpleDialog(props) {
   let contactUs = useSelector(state=>state.contactUs);
   let viewDataContact = useSelector(state=>state.viewDataContact);
-  let oneSingleRecordForm = contactUs.filter((data, index)=> index == viewDataContact);
+  let oneSingleRecordForm = contactUs.filter((data, index)=> data.id == viewDataContact);
   let oneSingleRecordFormData = oneSingleRecordForm[0] || {};
   const { onClose, selectedValue, open } = props;
 
@@ -52,14 +52,14 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-export default function SimpleDialogDemo({index}) {
+export default function SimpleDialogDemo({id}) {
   let dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
   
-  const handleClickOpen = (index) => {
+  const handleClickOpen = (id) => {
     setOpen(true);
-    dispatch(ViewSingleContactUsSliceActions.formDataViewSingle(index))
+    dispatch(ViewSingleContactUsSliceActions.formDataViewSingle(id))
   };
 
   const handleClose = (value) => {
@@ -71,7 +71,7 @@ export default function SimpleDialogDemo({index}) {
     <>
       
       
-      <FaEye style={{ color: "green" }}  variant="outlined" onClick={()=>handleClickOpen(index)}>
+      <FaEye style={{ color: "green" }}  variant="outlined" onClick={()=>handleClickOpen(id)}>
         Open simple dialog
       </FaEye>
       

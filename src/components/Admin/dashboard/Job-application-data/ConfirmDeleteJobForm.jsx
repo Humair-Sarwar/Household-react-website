@@ -4,16 +4,16 @@ import Button from "@mui/material/Button";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import { useDispatch, useSelector } from "react-redux";
-import { contactUsSliceActions } from "../../../../store/contactUsDataSlices/contactUs";
 import { MdDelete } from "react-icons/md";
-import { deleteSingleContactUsSliceActions } from "../../../../store/contactUsDataSlices/deleteContactForm";
 import { SuccessMsgActions } from "../../../../store/SuccessMsg";
+import { deleteSingleJobFormSliceActions } from "../../../../store/jobFormDataSlices/deleteConfirmJobForm";
+import { JobFormSliceActions } from "../../../../store/jobFormDataSlices/jobForm";
 
 const emails = [];
 
 function SimpleDialog(props) {
   let dispatch = useDispatch();
-  let deleteDataContact = useSelector((state) => state.deleteDataContact);
+  let deleteJobFormSingle = useSelector((state) => state.deleteJobFormSingle);
 
   const { onClose, selectedValue, open } = props;
 
@@ -22,7 +22,7 @@ function SimpleDialog(props) {
   };
   
   let deleteRecordContactForm = () => {
-    dispatch(contactUsSliceActions.formDataDeleteSingle(deleteDataContact));
+    dispatch(JobFormSliceActions.jobFormDeleteData(deleteJobFormSingle));
     handleClose();
     dispatch(SuccessMsgActions.successMsgShow());
     setTimeout(()=>{
@@ -75,14 +75,14 @@ SimpleDialog.propTypes = {
   open: PropTypes.bool.isRequired,
 };
 
-export default function SimpleDialogDemoDelete({ id }) {
+export default function ConfirmDeleteJobForm({ id }) {
   let dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [selectedValue, setSelectedValue] = React.useState(emails[1]);
 
   const handleClickOpen = (id) => {
     setOpen(true);
-    dispatch(deleteSingleContactUsSliceActions.formDataDeleteSingle(id));
+    dispatch(deleteSingleJobFormSliceActions.jobformDataDeleteSingle(id));
   };
 
   const handleClose = (value) => {

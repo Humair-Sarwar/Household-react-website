@@ -40,6 +40,13 @@ const Header = () => {
                             <li><Link className="dropdown-item" to="/services/ac-technicians">Ac technician</Link></li>
                         </ul>
                     </li>
+                    <li className="nav-item dropdown dropdown1">
+                        <Link className="nav-link dropdown-toggle" to="/careers/job-application-form" data-bs-auto-close="outside"
+                            data-bs-toggle="dropdown" aria-expanded="false">Careers</Link>
+                        <ul className="dropdown-menu dropdown-menu1">
+                            <li><Link className="dropdown-item" to="/careers/job-application-form">Job Application Form</Link></li>
+                        </ul>
+                    </li>
                 </ul>
                 <form className="d-flex nav-buttons">
                     <Link className="info-btn mx-2" to="/admin/login"><FaRegUserCircle style={{fontSize: '20px', marginBottom:'2px', marginRight: '5px'}}/> Login</Link>

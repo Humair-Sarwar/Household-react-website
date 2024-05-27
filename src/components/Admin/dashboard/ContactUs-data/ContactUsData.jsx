@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SimpleDialogDemo from "./ViewContactData";
 import SimpleDialogDemoDelete from "./ConfirmDeleteContact";
@@ -10,6 +10,7 @@ import CircularIndeterminate from "../Loader";
 import Pagination from '@mui/material/Pagination';
 
 const ContactUsData = () => {
+  let dispatch = useDispatch();
   const [searchTerm, updateSearch] = useState("");
   const [load, updateLoad] = useState(true);
   setTimeout(() => {
@@ -105,7 +106,7 @@ const ContactUsData = () => {
                         <td>
                           <a href="#" id="edit-user-btn" title="Edit">
                             <i className="fa-solid">
-                              <SimpleDialogUpdateData indxxx={startIndex + index} />
+                              <SimpleDialogUpdateData id={data.id} />
                             </i>
                           </a>
                           <a
@@ -115,12 +116,12 @@ const ContactUsData = () => {
                             title="Delete"
                           >
                             <i className="fa-solid">
-                              <SimpleDialogDemoDelete index={startIndex + index} />
+                              <SimpleDialogDemoDelete id={data.id} />
                             </i>
                           </a>
                           <a href="#" id="edit-user-btn" title="Edit">
                             <i className="fa-solid">
-                              <SimpleDialogDemo index={startIndex + index} />
+                              <SimpleDialogDemo id={data.id} />
                             </i>
                           </a>
                         </td>

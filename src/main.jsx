@@ -24,6 +24,7 @@ import ContactUsData from './components/Admin/dashboard/ContactUs-data/ContactUs
 import webStore from './store/index.js'
 import {Provider} from 'react-redux'
 import Users from './components/Admin/dashboard/users/Users.jsx'
+import JobApplicationForm from './components/JobApplicationForm.jsx'
 let router = createBrowserRouter([{
   path: '/',
   element: <App />,
@@ -63,6 +64,13 @@ let router = createBrowserRouter([{
   },{
     path: '/services/ac-technicians',
     element: <ACTechnicians/>
+  },{
+    path: '/careers/job-application-form',
+    element: <JobApplicationForm/>,
+    children: [{
+      path: '/careers/job-application-form',
+      element: <JobApplicationForm/>,
+    }]
   }]
 },{
   path: '/admin/login',
